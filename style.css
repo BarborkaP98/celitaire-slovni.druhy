@@ -22,9 +22,13 @@ body {
   margin: 20px;
 
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;      /* 👈 důležité */
+  flex-wrap: wrap;          /* 👈 zalamování */
   justify-content: center;
+
   gap: 8px;
+
+  align-items: center;      /* 👈 zarovnání */
 }
 
 .sloupec {
@@ -37,14 +41,20 @@ body {
 }
 
 .karta {
-  display: inline-block;
+  display: inline-flex;
   background: white;
   color: black;
   padding: 6px 10px;
   border-radius: 8px;
   cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: 0.2;
 }
 
+.karta:hover {
+  transform: scale(1.05);
+}
 .radek {
   margin: 10px;
 }
