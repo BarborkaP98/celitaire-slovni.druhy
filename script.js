@@ -321,7 +321,8 @@ function generuj() {
   aktualniIndex = 0;
 
   while (hraVety.length < 3) {
-    let r = data[Math.floor(Math.random() * data.length)];
+   let seznam = data[uroven];
+let r = seznam[Math.floor(Math.random() * seznam.length)];
     if (!hraVety.includes(r)) {
       hraVety.push(r);
     }
