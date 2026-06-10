@@ -359,7 +359,7 @@ function generuj() {
       hraVety.push(r);
     }
   }
-
+  document.getElementById("aktualni-karta").innerHTML = "";
   document.getElementById("veta").innerText = "";
 }
 // Vytvoř sloupec
