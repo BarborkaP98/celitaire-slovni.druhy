@@ -22,13 +22,15 @@ body {
   margin: 20px;
 
   display: flex;
-  flex-direction: row;      /* 👈 důležité */
-  flex-wrap: wrap;          /* 👈 zalamování */
+  flex-wrap: wrap;
   justify-content: center;
-
   gap: 8px;
+}
 
-  align-items: center;      /* 👈 zarovnání */
+#sloupce {
+  display: flex;              /* ✅ FIX */
+  justify-content: center;
+  gap: 10px;
 }
 
 .sloupec {
@@ -38,13 +40,6 @@ body {
   border: 2px dashed #2e7d32;
   border-radius: 10px;
   padding: 5px;
-}
-#sloupce {
-  display: flex;            /* 👈 TOTO CHYBÍ */
-  flex-direction: row;      /* 👈 vedle sebe */
-  justify-content: center;
-
-  gap: 10px;
 }
 
 .karta {
@@ -56,12 +51,13 @@ body {
   cursor: pointer;
   user-select: none;
   white-space: nowrap;
-  transition: 0.2s;
+  transition: 0.2s;  /* ✅ FIX */
 }
 
 .karta:hover {
   transform: scale(1.05);
 }
+
 .radek {
   margin: 10px;
 }
