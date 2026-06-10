@@ -32,12 +32,19 @@ body {
 }
 
 .sloupec {
-  width: 140px;
+  width: 120px;
   min-height: 200px;
   background: #c8e6c9;
   border: 2px dashed #2e7d32;
   border-radius: 10px;
   padding: 5px;
+}
+#slupce {
+  display: flex;            /* 👈 TOTO CHYBÍ */
+  flex-direction: row;      /* 👈 vedle sebe */
+  justify-content: center;
+
+  gap: 10px;
 }
 
 .karta {
