@@ -447,7 +447,6 @@ function presun(sloupec, karta) {
 if (karta.parentElement) {
   karta.parentElement.removeChild(karta);
 }
-  }
 
   if (sloupec.innerHTML === "") {
     let n = document.createElement("div");
