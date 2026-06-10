@@ -361,7 +361,6 @@ function generuj() {
   }
 
   document.getElementById("veta").innerText = "";
-  document.getElementById("aktualni-karta").innerHTML = "";
 }
 // Vytvoř sloupec
 function vytvorSloupce(vetaObj) {
@@ -420,13 +419,15 @@ function lizniKartu() {
   }
 
   let vetaObj = hraVety[aktualniIndex];
-  vytvorSloupce(vetaObj); // 👈 nové
+ if (aktualniIndex === 0) {
+  vytvorSloupce(vetaObj);
+}
   let povolene = povoleneDruhy();
 
   document.getElementById("veta").innerText = vetaObj.veta;
 
   let zona = document.getElementById("aktualni-karta");
-  zona.innerHTML = "";
+  
 
   vetaObj.slova.forEach(s => {
     if (povolene.includes(s.druh)) {
@@ -434,13 +435,18 @@ function lizniKartu() {
     }
   });
 
-  aktualniIndex++;
+if (aktualniIndex === 0) {
+  vytvorSloupce(vetaObj);
+}
+
+aktualniIndex++;
 }
 
 // ✅ PŘESUN
 function presun(sloupec, karta) {
-  if (karta.parentElement && karta.parentElement.classList.contains("sloupec")) {
-    karta.remove();
+if (karta.parentElement) {
+  karta.parentElement.removeChild(karta);
+}
   }
 
   if (sloupec.innerHTML === "") {
