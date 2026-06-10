@@ -365,36 +365,33 @@ function generuj() {
 // Vytvoř sloupec
 function vytvorSloupce(vetaObj) {
   let container = document.getElementById("sloupce");
-  container.innerHTML = ""; // smažeme staré
 
-  let druhy = [];
+  // vezmeme existující druhy
+  let existujici = Array.from(container.children).map(s => s.dataset.druh);
 
-  // zjistíme unikátní slovní druhy
   vetaObj.slova.forEach(s => {
-    if (!druhy.includes(s.druh)) {
-      druhy.push(s.druh);
+
+    if (!existujici.includes(s.druh)) {
+
+      let sloupec = document.createElement("div");
+      sloupec.className = "sloupec";
+      sloupec.dataset.druh = s.druh;
+
+      let nadpis = document.createElement("div");
+      nadpis.innerText = s.druh;
+      nadpis.style.fontWeight = "bold";
+
+      sloupec.appendChild(nadpis);
+
+      sloupec.addEventListener("click", () => {
+        if (vybranaKarta) presun(sloupec, vybranaKarta);
+      });
+
+      container.appendChild(sloupec);
     }
   });
-
-  // vytvoříme sloupce
-  druhy.forEach(druh => {
-    let sloupec = document.createElement("div");
-    sloupec.className = "sloupec";
-
-    let nadpis = document.createElement("div");
-    nadpis.innerText = druh;
-    nadpis.style.fontWeight = "bold";
-
-    sloupec.appendChild(nadpis);
-
-    // klikání
-    sloupec.addEventListener("click", () => {
-      if (vybranaKarta) presun(sloupec, vybranaKarta);
-    });
-
-    container.appendChild(sloupec);
-  });
 }
+
 // ✅ KARTA
 function vytvorKartu(text, vysledek) {
   let karta = document.createElement("div");
