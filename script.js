@@ -363,7 +363,39 @@ function generuj() {
   document.getElementById("veta").innerText = "";
   document.getElementById("aktualni-karta").innerHTML = "";
 }
+// Vytvoř sloupec
+function vytvorSloupce(vetaObj) {
+  let container = document.getElementById("sloupce");
+  container.innerHTML = ""; // smažeme staré
 
+  let druhy = [];
+
+  // zjistíme unikátní slovní druhy
+  vetaObj.slova.forEach(s => {
+    if (!druhy.includes(s.druh)) {
+      druhy.push(s.druh);
+    }
+  });
+
+  // vytvoříme sloupce
+  druhy.forEach(druh => {
+    let sloupec = document.createElement("div");
+    sloupec.className = "sloupec";
+
+    let nadpis = document.createElement("div");
+    nadpis.innerText = druh;
+    nadpis.style.fontWeight = "bold";
+
+    sloupec.appendChild(nadpis);
+
+    // klikání
+    sloupec.addEventListener("click", () => {
+      if (vybranaKarta) presun(sloupec, vybranaKarta);
+    });
+
+    container.appendChild(sloupec);
+  });
+}
 // ✅ KARTA
 function vytvorKartu(text, vysledek) {
   let karta = document.createElement("div");
@@ -388,6 +420,7 @@ function lizniKartu() {
   }
 
   let vetaObj = hraVety[aktualniIndex];
+  vytvorSloupce(vetaObj); // 👈 nové
   let povolene = povoleneDruhy();
 
   document.getElementById("veta").innerText = vetaObj.veta;
